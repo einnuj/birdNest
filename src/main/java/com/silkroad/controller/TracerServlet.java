@@ -3,6 +3,9 @@ package com.silkroad.controller;
 import com.silkroad.model.TracerModel;
 import com.silkroad.view.TracerView;
 
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
@@ -10,13 +13,13 @@ import java.io.IOException;
  *
  * Created by JSim on 6/24/17.
  */
-@javax.servlet.annotation.WebServlet(name = "TracerServlet")
+@WebServlet(name = "TracerServlet")
 public class TracerServlet extends javax.servlet.http.HttpServlet {
-    protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws javax.servlet.ServletException, IOException {
         doGet(request, response);
     }
 
-    protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws javax.servlet.ServletException, IOException {
         TracerView view = new TracerView(new TracerModel());
     }
 }
