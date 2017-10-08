@@ -6,11 +6,11 @@ import okhttp3.*;
 import java.io.IOException;
 import java.util.Map;
 
-public class RestServiceDefaultImpl implements RestService {
+public class RestServiceImpl implements RestService {
 
     private static final String CONTENT_TYPE_JSON = "application/json; charset=utf-8";
 
-    public String doGetRequest(String url) throws IOException{
+    public String doGetRequest(String url) throws IOException {
         final OkHttpClient httpClient = new OkHttpClient();
 
         Request getRequest = new Request.Builder()
