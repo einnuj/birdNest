@@ -41,31 +41,31 @@ class AuthenticationPreferences {
         return LoggerFactory.getLogger(AuthenticationPreferences.class);
     }
 
-    public String getOauthConsumerKey() {
+    String getOauthConsumerKey() {
         return oauthConsumerKey;
     }
 
-    public String getOauthNonce() {
+    String getOauthNonce() {
         return oauthNonce;
     }
 
-    public String getOauthSignature() {
+    String getOauthSignature() {
         return oauthSignature;
     }
 
-    public String getOauthSignatureMethod() {
+    String getOauthSignatureMethod() {
         return oauthSignatureMethod;
     }
 
-    public String getOauthTimestamp() {
+    String getOauthTimestamp() {
         return oauthTimestamp;
     }
 
-    public String getOauthToken() {
+    String getOauthToken() {
         return oauthToken;
     }
 
-    public String getOauthVersion() {
+    String getOauthVersion() {
         return oauthVersion;
     }
 
