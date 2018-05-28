@@ -39,8 +39,8 @@ class AuthenticationPreferences {
         }
     }
 
-    private static Logger getLogger() {
-        return LoggerFactory.getLogger(AuthenticationPreferences.class);
+    private Logger getLogger() {
+        return LoggerFactory.getLogger(getClass());
     }
 
     String getOauthConsumerKey() {
