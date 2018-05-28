@@ -11,8 +11,8 @@ import java.io.IOException;
 
 class AuthenticationPreferences {
 
-    private static final String AUTH_PREFS_ROOT = "src" + File.separator + "main" + File.separator + "resources";
-    private static final String AUTH_PREFS_FILE_NAME = "auth.pref.json";
+    private final String AUTH_PREFS_ROOT;
+    private final String AUTH_PREFS_FILE_NAME;
 
     private String oauthConsumerKey;
     private String oauthNonce;
@@ -22,11 +22,13 @@ class AuthenticationPreferences {
     private String oauthToken;
     private String oauthVersion;
 
-    AuthenticationPreferences() {
+    AuthenticationPreferences(String authPrefsRoot, String authPrefsFileName) {
+        AUTH_PREFS_ROOT = authPrefsRoot;
+        AUTH_PREFS_FILE_NAME = authPrefsFileName;
         load();
     }
 
-    private static AuthenticationPreferences load() {
+    private AuthenticationPreferences load() {
         try (FileReader fileReader = new FileReader(AUTH_PREFS_ROOT + File.separator + AUTH_PREFS_FILE_NAME)) {
             Gson gson = new GsonBuilder().create();
             return gson.fromJson(fileReader, AuthenticationPreferences.class);
