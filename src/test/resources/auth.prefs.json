@@ -1,0 +1,9 @@
+{
+    "oauthConsumerKey": "testConsumerKey",
+    "oauthNonce": "testNonce",
+    "oauthSignature": "testSignature",
+    "oauthSignatureMethod": "testSignatureMethod",
+    "oauthTimestamp": "testTimestamp",
+    "oauthToken": "testToken",
+    "oauthVersion": "testVersion"
+}

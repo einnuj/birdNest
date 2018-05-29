@@ -11,9 +11,6 @@ import java.io.IOException;
 
 class AuthenticationPreferences {
 
-    private final String AUTH_PREFS_ROOT;
-    private final String AUTH_PREFS_FILE_NAME;
-
     private String oauthConsumerKey;
     private String oauthNonce;
     private String oauthSignature;
@@ -22,26 +19,7 @@ class AuthenticationPreferences {
     private String oauthToken;
     private String oauthVersion;
 
-    AuthenticationPreferences(String authPrefsRoot, String authPrefsFileName) {
-        AUTH_PREFS_ROOT = authPrefsRoot;
-        AUTH_PREFS_FILE_NAME = authPrefsFileName;
-        load();
-    }
-
-    private AuthenticationPreferences load() {
-        try (FileReader fileReader = new FileReader(AUTH_PREFS_ROOT + File.separator + AUTH_PREFS_FILE_NAME)) {
-            Gson gson = new GsonBuilder().create();
-            return gson.fromJson(fileReader, AuthenticationPreferences.class);
-        }
-        catch (IOException e) {
-            getLogger().error("Could not get Preferences from file: ", e);
-            throw new FailToLoadCredentialsException(e);
-        }
-    }
-
-    private Logger getLogger() {
-        return LoggerFactory.getLogger(getClass());
-    }
+    private AuthenticationPreferences(){}
 
     String getOauthConsumerKey() {
         return oauthConsumerKey;
@@ -83,5 +61,37 @@ class AuthenticationPreferences {
                 ", oauthVersion='" + oauthVersion + '\'' +
                 '}';
     }
+
+    static class AuthenticationPreferencesBuilder {
+
+        private String authPrefsRoot;
+        private String authPrefsFileName;
+
+        public AuthenticationPreferencesBuilder preferencesRoot(String authPrefsRoot) {
+            this.authPrefsRoot = authPrefsRoot;
+            return this;
+        }
+
+        public AuthenticationPreferencesBuilder preferencesFileName(String authPrefsFileName) {
+            this.authPrefsFileName = authPrefsFileName;
+            return this;
+        }
+
+        public AuthenticationPreferences load() {
+            try (FileReader fileReader = new FileReader(authPrefsRoot + File.separator + authPrefsFileName)) {
+                Gson gson = new GsonBuilder().create();
+                return gson.fromJson(fileReader, AuthenticationPreferences.class);
+            }
+            catch (IOException e) {
+                getLogger().error("Could not get Preferences from file: ", e);
+                throw new FailToLoadCredentialsException(e);
+            }
+        }
+
+        private Logger getLogger() {
+            return LoggerFactory.getLogger(getClass());
+        }
+    }
+
 
 }
