@@ -67,17 +67,17 @@ class AuthenticationPreferences {
         private String authPrefsRoot;
         private String authPrefsFileName;
 
-        public AuthenticationPreferencesBuilder preferencesRoot(String authPrefsRoot) {
+        AuthenticationPreferencesBuilder preferencesRoot(String authPrefsRoot) {
             this.authPrefsRoot = authPrefsRoot;
             return this;
         }
 
-        public AuthenticationPreferencesBuilder preferencesFileName(String authPrefsFileName) {
+        AuthenticationPreferencesBuilder preferencesFileName(String authPrefsFileName) {
             this.authPrefsFileName = authPrefsFileName;
             return this;
         }
 
-        public AuthenticationPreferences load() {
+        AuthenticationPreferences load() {
             try (FileReader fileReader = new FileReader(authPrefsRoot + File.separator + authPrefsFileName)) {
                 Gson gson = new GsonBuilder().create();
                 return gson.fromJson(fileReader, AuthenticationPreferences.class);
